@@ -1,15 +1,25 @@
 package jpabook.jpashop.domain;
 
 import jpabook.jpashop.domain.item.Item;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 import static javax.persistence.FetchType.LAZY;
 
+/**
+ * protected OrderItem() {
+ *      NoArgsConstructor(access = AccessLevel.PROTECTED)와 같다
+ *      생성 메소드를 위해서, 생성자가 있으면 유지보수 하기 어렵지만
+ *      생성 메소드가 있으면, 항상 형태를 유지하고, 유지보수하기 쉽다. 한 곳만 수정하면 되기 때문에
+ * }
+ */
 @Entity
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderItem {
 
     @Id @GeneratedValue
