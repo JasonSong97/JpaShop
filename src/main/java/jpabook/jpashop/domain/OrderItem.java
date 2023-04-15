@@ -27,4 +27,31 @@ public class OrderItem {
     private int orderPrice; // 주문가격
 
     private int count; // 주문 수량
+
+    //==생성 메소드==//
+    public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
+        OrderItem orderItem = new OrderItem();
+
+        orderItem.setItem(item);
+        orderItem.setOrderPrice(orderPrice);
+        orderItem.setCount(count);
+
+        item.removeStock(count); // 재고에서 까주기
+
+        return orderItem;
+    }
+
+    //==비지니스 로직==//
+    public void cancel() {
+        getItem().addStock(count); // 재고를 다시 주문 수량만큼 늘리기
+    }
+
+    //==조회 로직==//
+
+    /**
+     * 주문상품 전체 가격 조회
+     */
+    public int getTotalPrice() { // 주문 가격 * 주문 수량
+        return getOrderPrice() * getCount();
+    }
 }

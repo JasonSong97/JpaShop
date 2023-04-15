@@ -33,7 +33,7 @@ public abstract class Item { // 상속관계 mapping
     /**
      * stack 증가
      */
-    public void addStockQuantity(int quantity) {
+    public void addStock(int quantity) {
         this.stockQuantity += quantity;
     }
 
