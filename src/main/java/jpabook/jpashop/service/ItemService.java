@@ -21,13 +21,12 @@ public class ItemService { // ItemRepository에게 단순히 위임만 하는 �
         itemRepository.save(item);
     }
 
-    @Transactional
+    @Transactional // 영속화 후 값을 바꿈 -> 끝내면 Transaction 종료시 flush 날린다!(변경감지)
     public void updateItem(Long itemId, String name, int price, int stockQuantity) {
         Item findItem = itemRepository.findOne(itemId);
         findItem.setName(name);
         findItem.setPrice(price);
         findItem.setStockQuantity(stockQuantity);
-        // 영속화 후 값을 바꿈 -> 끝내면 Transaction 종료시 flush 날린다!(변경감지)
     }
 
     public List<Item> findItems() {
